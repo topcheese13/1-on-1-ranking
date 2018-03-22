@@ -1,14 +1,9 @@
 const path = require("path");
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-const extractSass = new ExtractTextPlugin({
-    filename: "css/[name].css",
-    allChunks: false
-});
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: [
-        './front-end'
+        './front-end/js/index.js'
     ],
     output: {
         path: __dirname + '/public',
@@ -20,29 +15,43 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.scss$/,
-                use: extractSass.extract({
-                    use: [
-                        {
-                            loader: 'sass-loader',
-                            options: {
-                                sourceMap: true
-                            }
-                        },
-                        'css-loader'
-                    ],
-                    fallback: 'style-loader',
-                })
-            }
+                test: /\.css$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader"
+                ]
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            },
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader'
+            },
         ],
     },
     plugins: [
-        extractSass
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: "[name].css",
+            chunkFilename: "[id].css"
+        })
     ],
     externals: {
         'react': 'React',
         'react-dom': 'ReactDOM'
-    }
+    },
+    resolve: {
+        extensions: ['.js', '.jsx'],
+        modules: [
+            path.resolve(__dirname, '../front-end'),
+            path.resolve(__dirname, './node_modules')
+        ],
+    },
 };
-
-
