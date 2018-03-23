@@ -29,7 +29,7 @@ module.exports = {
                         loader: "postcss-loader",
                         options: {
                             autoprefixer: {
-                                browsers: ["last 2 versions"]
+                                browsers: ["ie > 10", "last 6 iOS versions", "last 4 versions"]
                             },
                             plugins: () => [
                                 autoprefixer
