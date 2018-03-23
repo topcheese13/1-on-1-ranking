@@ -62,11 +62,11 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/";
+/******/ 	__webpack_require__.p = "";
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "./front-end/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -113,7 +113,7 @@ var App = function (_Component) {
         value: function render() {
             return _react2.default.createElement(
                 "div",
-                null,
+                { className: "pageTitle" },
                 _react2.default.createElement(
                     "p",
                     null,
@@ -17978,18 +17978,6 @@ module.exports = react;
 if (false) {} else {
   module.exports = __webpack_require__(/*! ./cjs/react.development.js */ "./node_modules/react/cjs/react.development.js");
 }
-
-
-/***/ }),
-
-/***/ 0:
-/*!*************************!*\
-  !*** multi ./front-end ***!
-  \*************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! ./front-end */"./front-end/index.js");
 
 
 /***/ })
