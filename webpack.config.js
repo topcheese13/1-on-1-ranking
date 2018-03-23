@@ -1,9 +1,9 @@
 const path = require("path");
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
 module.exports = {
     entry: [
-        './front-end/js/index.js'
+        './front-end'
     ],
     output: {
         path: __dirname + '/public',
@@ -11,27 +11,20 @@ module.exports = {
         publicPath: "/",
     },
     devtool: "sourcemap",
-    mode: "production",
     module: {
         rules: [
             {
                 test: /\.css$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
-                    "css-loader"
+                    MiniCssExtractPlugin.loader, "css-loader"
                 ]
             },
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
+                test: /\.(js|jsx)$/,
+                exclude: [/node_modules/, /public/],
                 use: {
                     loader: "babel-loader"
                 }
-            },
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
             },
         ],
     },
@@ -42,16 +35,5 @@ module.exports = {
             filename: "[name].css",
             chunkFilename: "[id].css"
         })
-    ],
-    externals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM'
-    },
-    resolve: {
-        extensions: ['.js', '.jsx'],
-        modules: [
-            path.resolve(__dirname, '../front-end'),
-            path.resolve(__dirname, './node_modules')
-        ],
-    },
+    ]
 };
