@@ -5,7 +5,8 @@ const autoprefixer = require('autoprefixer');
 module.exports = {
     entry: {
         app: './front-end',
-        styles: './front-end/scss/styles.scss'
+        styles: './front-end/scss/styles.scss',
+        hotreload: 'react-hot-loader/patch',
     },
     output: {
         path: __dirname + '/public',
@@ -58,6 +59,7 @@ module.exports = {
             filename: "/css/[name].css",
             chunkFilename: "[id].css"
         }),
+        new webpack.HotModuleReplacementPlugin(),
         new webpack.LoaderOptionsPlugin({
             options: {
                 postcss: [
@@ -65,5 +67,9 @@ module.exports = {
                 ]
             }
         })
-    ]
+    ],
+    devServer: {
+        contentBase: __dirname + '/public',
+        hot: true
+    }
 };

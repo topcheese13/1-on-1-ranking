@@ -4,7 +4,7 @@ export default class App extends Component {
     render() {
         return (
             <div className="pageTitle">
-                <p>React here!</p>
+                <p>React here! and updating</p>
             </div>
         );
     }
