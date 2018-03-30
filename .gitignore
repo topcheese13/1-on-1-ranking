@@ -12,3 +12,6 @@ npm-debug.log
 yarn-error.log
 .env
 .DS_Store
+*.hot-update.json
+*.hot-update.js
+*.hot-update.js.map
