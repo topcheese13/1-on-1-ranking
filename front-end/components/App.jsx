@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+import { hot } from 'react-hot-loader'
 
-export default class App extends Component {
+class App extends Component {
     render() {
         return (
             <div className="pageTitle">
-                <p>React here! and updating</p>
+                <p>React here! hi</p>
             </div>
         );
     }
 };
+
+export default hot(module)(App);
