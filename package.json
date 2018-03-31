@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "main": "front-end/js/main.js",
     "scripts": {
-        "dev": "gulp watch --require --gulpfile front-end/tasks",
-        "build": "NODE_ENV=production gulp build --require --gulpfile front-end/tasks"
+        "dev": "gulp watch --require babel-register --gulpfile front-end/tasks",
+        "build": "NODE_ENV=production gulp build --require babel-register --gulpfile front-end/tasks"
     },
     "repository": {
         "type": "git",
@@ -18,15 +18,24 @@
         "babel-cli": "^6.26.0",
         "babel-core": "^6.26.0",
         "babel-preset-env": "^1.6.1",
+        "babel-preset-es2015": "^6.24.1",
+        "babel-preset-react": "^6.24.1",
         "babel-register": "^6.26.0",
         "browser-sync": "^2.23.6",
+        "es2015": "^0.0.0",
         "gulp": "gulpjs/gulp.git#4.0",
+        "gulp-autoprefixer": "^5.0.0",
+        "gulp-clean": "^0.4.0",
+        "gulp-load-plugins": "^1.5.0",
+        "gulp-sass": "^3.2.1",
+        "gulp-sourcemaps": "^2.6.4",
         "node-sass": "^4.7.2",
         "path": "^0.12.7",
         "webpack": "^4.2.0",
         "webpack-cli": "^2.0.12",
         "webpack-dev-server": "^3.1.1",
-        "webpack-hot-middleware": "^2.21.2"
+        "webpack-hot-middleware": "^2.21.2",
+        "webpack-stream": "^4.0.3"
     },
     "dependencies": {
         "react": "^16.3.0",
