@@ -11,12 +11,10 @@ let config = {
     // The package 'webpack-merge' can help with that.
     // This tenary setup is just for simplicity sake.
     entry: isProduction ? {
-        main: '../main.js'
+        main: '../js/main.js'
     } : {
         main: [
-            '../main.js',
-            'webpack/hot/dev-server',
-            'webpack-hot-middleware/client'
+            '../js/main.js',
         ]
     },
 
@@ -35,27 +33,14 @@ let config = {
                 loader: "babel-loader"
             }
         },]
-    },
-
-    plugins: isProduction ? [
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': '"production"'
-        }),
-        new webpack.optimize.UglifyJsPlugin()
-    ] : [
-        new webpack.HotModuleReplacementPlugin()
-    ]
+    }
 }
 
 
 function scripts() {
-
     return new Promise(resolve => webpack(config, (err, stats) => {
-
         if(err) console.log('Webpack', err)
-
         console.log(stats.toString({ /* stats options */ }))
-
         resolve()
     }))
 }

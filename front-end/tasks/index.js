@@ -1,80 +1,75 @@
-import path    from 'path'
+import path from 'path'
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
-const autoprefixer = require('gulp-autoprefixer');
-import { scripts } from './webpack'
-import { server }  from './server'
-const sass = require('gulp-sass');
-const clean = require('gulp-clean');
-const sourcemaps = require('gulp-sourcemaps');
-const isProduction = (process.env.NODE_ENV === 'production');
 import {exec} from 'child_process';
 import browserSync from 'browser-sync';
+const clean = require('gulp-clean');
 import webpack from 'webpack';
 import webpackStream from 'webpack-stream';
+import webpackConfig from './webpack.js'
+
+const isProduction = (process.env.NODE_ENV === 'production');
 
 const plugins = gulpLoadPlugins();
+
+const loc = 'node_modules/';
 const reload = browserSync.reload;
 
-const workingPath = './front-end/';
-const destPath = './public/';
+const workingPath = path.resolve(__dirname, '../');
+const destPath = path.resolve(__dirname, '../../public');
 
-/* The Sass data is concatenated and minified then outputed. */
-export const scss = () => gulp
-    .src(`${workingPath}/scss/**/*.scss`)
-    .pipe(plugins.sass())
-    .pipe(gulp.dest(`${destPath}/css`))
-    .pipe(browserSync.stream());
+console.log("working path: ", workingPath);
+console.log("destPath path: ", destPath);
 
-// Clean JS
-export const clean_scripts = () => gulp
-    .src(`${destPath}/js`, {read: false})
-    .pipe(clean());
-
-// Clean CSS
-export const clean_css = () => gulp
-    .src(`${destPath}/css`, {read: false})
-    .pipe(clean());
-
-
-// Clean All
-export const clean_all = () => gulp
-    .parallel(clean_scripts, clean_css);
-
-
-// // Scripts
-// export const scripts = () => gulp
-//     .src([
-//         `${workingPath}/js/**/*.js`,
-//         `${workingPath}/js/**/*.jsx`
-//     ])
-//     .pipe(webpackStream(webpackConfig, webpack))
-//     .pipe(plugins.concat('scripts.min.js'))
-//     .pipe(gulp.dest(`${destPath}/js`))
-//     .pipe(browserSync.stream());
-
-
-// Watcher
-export const watch = done => {
-    /* Trigger a SCSS injection (no reload) on a scss file change */
-    gulp.series(scss);
-    gulp.watch(`${workingPath}/scss/**/*.scss`, gulp.parallel(scss));
-
-    /* Trigger a reaload on a js file change */
-    let scriptsWatcher = gulp.watch(`${workingPath}/js/**/*.js`, gulp.parallel(scripts));
-    scriptsWatcher.on('change', (event, path, stats) => {
-        reload();
-    });
+gulp.task('clean', (done) => {
+    console.log(">> Task: clean");
+    gulp
+        .src([
+            `${destPath}/js`,
+            `${destPath}/css`,
+        ])
+        .pipe(plugins.clean());
     done();
-};
+});
 
-/* Main development server command
- * Runs other gulp tasks to minify CSS and JS files.
- * Runs the Watch task.
- * BrowserSync loads hot-reload. */
-gulp.task('dev_tasks', gulp.series(
-    clean_all,
-    gulp.parallel(scss, server, watch),
+gulp.task('scss', (done) => {
+    console.log(">> Task: SCSS");
+    gulp
+        .src(`${workingPath}/scss/**/*.scss`)
+        .pipe(plugins.sass())
+        .pipe(gulp.dest(`${destPath}/css`))
+        .pipe(browserSync.stream());
+    done();
+});
+
+gulp.task('watch', (done) => {
+    console.log(">> Task: Watch");
+    gulp.watch(`${workingPath}/scss/**/*.scss`, gulp.series('scss'));
+    done();
+});
+
+gulp.task('dev', (done) => {
+    console.log(">> Task: Dev");
+    gulp.series('scss', 'watch')();
+    done();
+});
+
+gulp.task('scripts', (done) => {
+    console.log(">> Task: Dev");
+    // gulp
+    //     .src([
+    //         `${workingPath}/main.js`,
+    //         `${workingPath}/**/*.jsx`
+    //     ])
+    //     .pipe(webpackStream(webpackConfig, webpack))
+    //     .pipe(gulp.dest(`${destPath}/js`))
+    //     .pipe(browserSync.stream());
+    done();
+});
+
+gulp.task('dev', gulp.series(
+    'clean',
+    gulp.parallel('scss', 'scripts', 'watch'),
     () => {
         browserSync.init(null, {
             proxy: "localhost:5000",
@@ -86,41 +81,3 @@ gulp.task('dev_tasks', gulp.series(
         });
     }
 ));
-
-
-export const dev   = gulp.series('dev_tasks', scss, server);
-// export const build = gulp.series(clean_all, scss, scripts);
-
-
-
-
-
-
-
-
-// gulp.task('images', function () {
-//     return gulp.src('design/images/**/*')
-//         .pipe($.cache($.imagemin({
-//             optimizationLevel: 3,
-//             progressive: true,
-//             interlaced: true
-//         })))
-//         .pipe(gulp.dest('design/images'))
-//         .pipe($.size({showFiles: true}));
-// });
-
-
-
-
-
-// Export
-export default dev
-
-
-
-
-
-
-
-
-
