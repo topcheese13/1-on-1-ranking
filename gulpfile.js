@@ -6,7 +6,7 @@ import browserSync from 'browser-sync';
 const clean = require('gulp-clean');
 import webpack from 'webpack';
 import webpackStream from 'webpack-stream';
-import webpackConfig from './webpack.js'
+import webpackConfig from './front-end/tasks/webpack.js'
 
 const isProduction = (process.env.NODE_ENV === 'production');
 
@@ -15,8 +15,8 @@ const plugins = gulpLoadPlugins();
 const loc = 'node_modules/';
 const reload = browserSync.reload;
 
-const workingPath = path.resolve(__dirname, '../');
-const destPath = path.resolve(__dirname, '../../public');
+const workingPath = path.resolve(__dirname, 'front-end');
+const destPath = path.resolve(__dirname, 'public');
 
 console.log("working path: ", workingPath);
 console.log("destPath path: ", destPath);
@@ -27,7 +27,7 @@ gulp.task('clean', (done) => {
         .src([
             `${destPath}/js`,
             `${destPath}/css`,
-        ])
+        ], { allowEmpty: true })
         .pipe(plugins.clean());
     done();
 });
@@ -35,7 +35,7 @@ gulp.task('clean', (done) => {
 gulp.task('scss', (done) => {
     console.log(">> Task: SCSS");
     gulp
-        .src(`${workingPath}/scss/**/*.scss`)
+        .src([`${workingPath}/scss/**/*.scss`], { allowEmpty: true })
         .pipe(plugins.sass())
         .pipe(gulp.dest(`${destPath}/css`))
         .pipe(browserSync.stream());
@@ -55,29 +55,32 @@ gulp.task('dev', (done) => {
 });
 
 gulp.task('scripts', (done) => {
-    console.log(">> Task: Dev");
-    // gulp
-    //     .src([
-    //         `${workingPath}/main.js`,
-    //         `${workingPath}/**/*.jsx`
-    //     ])
-    //     .pipe(webpackStream(webpackConfig, webpack))
-    //     .pipe(gulp.dest(`${destPath}/js`))
-    //     .pipe(browserSync.stream());
+    console.log(">> Task: Scripts");
+    gulp
+        .src([
+            `${workingPath}/js/**/*.js`,
+            `${workingPath}/components/**/*.jsx`
+        ], { allowEmpty: true })
+        .pipe(webpackStream(webpackConfig, webpack))
+        .pipe(gulp.dest(`${destPath}`))
+        .pipe(browserSync.stream());
     done();
 });
 
 gulp.task('dev', gulp.series(
     'clean',
-    gulp.parallel('scss', 'scripts', 'watch'),
+    'scss',
+    'scripts',
+    server,
+    'watch',
     () => {
-        browserSync.init(null, {
-            proxy: "localhost:5000",
-            port: 8080,
-            reloadDelay: 1000,
-            reloadDebounce: 2000,
-            reloadOnRestart: true,
-            open: false
-        });
+        // browserSync.init(null, {
+        //     proxy: "localhost:5000",
+        //     port: 8080,
+        //     reloadDelay: 1000,
+        //     reloadDebounce: 2000,
+        //     reloadOnRestart: true,
+        //     open: false
+        // });
     }
 ));

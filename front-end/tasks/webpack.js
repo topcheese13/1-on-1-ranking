@@ -3,6 +3,8 @@ import webpack from 'webpack'
 import process from 'process'
 
 const isProduction = (process.env.NODE_ENV === 'production');
+const workingPath = path.resolve(__dirname, 'front-end');
+const destPath = path.resolve(__dirname, 'public');
 
 let config = {
 
@@ -11,16 +13,14 @@ let config = {
     // The package 'webpack-merge' can help with that.
     // This tenary setup is just for simplicity sake.
     entry: isProduction ? {
-        main: '../js/main.js'
+        main: [`${workingPath}/js/main.js`]
     } : {
-        main: [
-            '../js/main.js',
-        ]
+        main: [`${workingPath}/js/main.js`]
     },
 
     output: {
-        path: path.resolve(__dirname, '../public'),
-        filename: 'js/[name].js',
+        path: `${destPath}/js`,
+        filename: '[name].js',
     },
     devtool: "sourcemap",
     context: path.resolve(__dirname, '../public'),

@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./front-end/scss/styles.scss"],"names":[],"mappings":"AAAA,WACE,cAAgB,C","file":"/css/styles.css","sourcesContent":[".pageTitle {\n  font-size: 25px; }\n"],"sourceRoot":""}
