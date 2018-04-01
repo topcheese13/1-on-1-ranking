@@ -6,7 +6,7 @@ import browserSync from 'browser-sync';
 const clean = require('gulp-clean');
 import webpack from 'webpack';
 import webpackStream from 'webpack-stream';
-import webpackConfig from './front-end/tasks/webpack.js'
+import { webpackConfig, server } from './front-end/tasks/webpack.js'
 
 const isProduction = (process.env.NODE_ENV === 'production');
 
