@@ -3,7 +3,8 @@
     "version": "1.0.0",
     "main": "./front-end/js/main.js",
     "scripts": {
-        "webpack": "NODE_ENV=dev webpack --display-error-details",
+        "prod": "NODE_ENV=dev webpack --config webpack.config.prod.js",
+        "hot": "NODE_ENV=dev node ./dev-server.js",
         "dev": "NODE_ENV=dev gulp dev --require babel-register",
         "build": "NODE_ENV=production gulp prod --require babel-register"
     },
@@ -39,12 +40,16 @@
         "node-sass": "^4.7.2",
         "path": "^0.12.7",
         "process": "^0.11.10",
+        "uglifyjs-webpack-plugin": "^1.2.5",
         "webpack": "^4.2.0",
         "webpack-cli": "^2.0.12",
+        "webpack-merge": "^4.1.2",
         "webpack-stream": "^4.0.3"
     },
     "dependencies": {
         "react": "^16.3.0",
-        "react-dom": "^16.3.0"
+        "react-dom": "^16.3.0",
+        "react-router": "^4.2.0",
+        "react-router-dom": "^4.2.2"
     }
 }

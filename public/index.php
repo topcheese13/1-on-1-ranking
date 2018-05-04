@@ -14,6 +14,12 @@
 </head>
 <body>
   <div id="app"></div>
-    <script type="text/javascript" src="/js/main.js"></script>
+    <?php
+        if (APP_ENV === 'production') {
+            echo '<script type="text/javascript" src="/js/main.js"></script>';
+        } else {
+            echo '<script type="text/javascript" src="http://localhost:3030/main.js"></script>';
+        }
+    ?>
   </body>
 </html>
