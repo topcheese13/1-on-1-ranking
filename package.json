@@ -3,10 +3,10 @@
     "version": "1.0.0",
     "main": "./front-end/js/main.js",
     "scripts": {
-        "prod": "NODE_ENV=dev webpack --config webpack.config.prod.js",
+        "prod": "NODE_ENV=dev webpack --config webpack.config.prod.js --watch",
         "hot": "NODE_ENV=dev node ./dev-server.js",
-        "dev": "NODE_ENV=dev gulp dev --require babel-register",
-        "build": "NODE_ENV=production gulp prod --require babel-register"
+        "styles": "gulp --require babel-register",
+        "all": "concurrently \"yarn prod\" \"yarn styles\" \"yarn hot\""
     },
     "repository": {
         "type": "git",
@@ -15,8 +15,6 @@
     "author": "Stéphane LaFlèche",
     "license": "MIT",
     "devDependencies": {
-        "@babel/core": "^7.0.0-beta.44",
-        "@babel/preset-env": "^7.0.0-beta.44",
         "autoprefixer": "^8.2.0",
         "babel": "^6.23.0",
         "babel-cli": "^6.26.0",
@@ -26,27 +24,24 @@
         "babel-preset-es2015": "^6.24.1",
         "babel-preset-react": "^6.24.1",
         "babel-register": "^6.26.0",
-        "browser-sync": "^2.23.6",
-        "es2015": "^0.0.0",
+        "concurrently": "^3.5.1",
         "express": "^4.16.3",
-        "gulp": "gulpjs/gulp.git#4.0",
         "gulp-autoprefixer": "^5.0.0",
-        "gulp-babel": "^7.0.1",
         "gulp-clean": "^0.4.0",
         "gulp-livereload": "^3.8.1",
         "gulp-load-plugins": "^1.5.0",
         "gulp-sass": "^3.2.1",
         "gulp-sourcemaps": "^2.6.4",
         "node-sass": "^4.7.2",
-        "path": "^0.12.7",
-        "process": "^0.11.10",
         "uglifyjs-webpack-plugin": "^1.2.5",
         "webpack": "^4.2.0",
         "webpack-cli": "^2.0.12",
-        "webpack-merge": "^4.1.2",
-        "webpack-stream": "^4.0.3"
+        "webpack-dev-middleware": "^3.1.3",
+        "webpack-hot-middleware": "^2.22.1",
+        "webpack-merge": "^4.1.2"
     },
     "dependencies": {
+        "gulp": "^3.9.1",
         "react": "^16.3.0",
         "react-dom": "^16.3.0",
         "react-router": "^4.2.0",

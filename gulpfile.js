@@ -1,4 +1,4 @@
-import path from 'path'
+const path = require('path');
 import { compileScripts, runHot } from 'webpack';
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
@@ -18,7 +18,6 @@ gulp.task('clean', (done) => {
     console.log(">> Task: clean");
     gulp
         .src([
-            `${destPath}/js`,
             `${destPath}/css`,
         ], { allowEmpty: true })
         .pipe(clean())
@@ -35,39 +34,16 @@ gulp.task('scss', (done) => {
     done();
 });
 
-gulp.task('dev', (done) => {
-    console.log(">> Task: Dev");
-    gulp.series('scss', 'watch')();
-    done();
-});
-
-gulp.task('scripts', (done) => {
-    console.log(">> Task: Scripts");
-    if (isProduction) {
-        gulp.series(compileScripts);
-    } else {
-        gulp.parallel(runHot, compileScripts);
-    }
-    done();
-});
-
 gulp.task('watch', (done) => {
     console.log(">> Task: Watch");
-    gulp.watch(`${workingPath}/scss/**/*.scss`, gulp.series('scss'));
-    gulp.watch([
-            `${workingPath}/js/**/*.js`,
-            `${workingPath}/js/**/*.jsx`
-        ],
-        gulp.series('scripts')
-    );
+    gulp.watch(`${workingPath}/scss/**/*.scss`, ['scss']);
     done();
 });
 
-gulp.task('dev', gulp.series(
+gulp.task('dev', [
     'clean',
     'scss',
-    'scripts',
     'watch'
-));
+]);
 
-export default gulp.task('dev');
+gulp.task('default', ['dev']);
