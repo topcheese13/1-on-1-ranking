@@ -1,4 +1,9 @@
 .pageTitle {
   font-size: 35px;
   color: pink;
-  background: blue; }
+  background: blue;
+  border-radius: 2px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
