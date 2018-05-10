@@ -7,9 +7,12 @@ const devConfig = webpackMerge(baseConfig, {
     mode: "development",
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-    ]
+    ],
+    output: {
+        publicPath: "http://127.0.0.1:3030/",
+    }
 });
 
-devConfig.entry.main.unshift('webpack-hot-middleware/client');
+devConfig.entry.main.unshift('webpack-hot-middleware/client?dynamicPublicPath=true&path=__webpack_hmr');
 
 module.exports = devConfig;
