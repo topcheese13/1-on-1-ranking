@@ -13,10 +13,23 @@
 
 // Home page
 
+Route::get('/', function () {
+    return view('index');
+});
+
+Route::get('players', function () {
+    return view('index');
+});
+
+Route::get('api/players', 'PlayerController@all');
+
+
+
+/**
 Route::get('/', 'DefaultController@index');
 
 // Players
-Route::get('players', 'PlayerController@all');
+
 Route::get('player/{alias}', 'PlayerController@show');
 
 // Games
@@ -27,6 +40,6 @@ Route::post('game/create', 'GameController@store');
 // Seasons
 
 Route::get('season/new', 'SeasonController@store');
-
+**/
 
 
