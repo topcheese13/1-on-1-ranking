@@ -1,8 +1,8 @@
 import React from "react";
 import { hot } from 'react-hot-loader';
 import { BrowserRouter, Route, Switch} from "react-router-dom";
-import HomePage from "pages/HomePage";
-import PlayersPage from "pages/PlayersPage";
+import HomePage from "./pages/HomePage";
+import PlayersPage from "./pages/PlayersPage";
 
 class App extends React.Component {
     render() {

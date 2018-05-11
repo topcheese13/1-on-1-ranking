@@ -9,7 +9,7 @@ module.exports = {
     cache: true,
     entry: {
         main: [
-            `${workingPath}/js/main.js`
+            `${workingPath}/js/main.jsx`
         ],
     },
     output: {
@@ -19,11 +19,14 @@ module.exports = {
     module: {
         rules: [{
             test: /\.(js|jsx)$/,
-            include: `${workingPath}/components`,
+            include: [`${workingPath}`],
             exclude: [/node_modules/, /public/],
             use: {
                 loader: "babel-loader"
             }
         }],
     },
+    resolve: {
+        extensions: [".js", ".jsx"]
+    }
 };
