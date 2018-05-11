@@ -2,25 +2,24 @@ import React from "react";
 import DocumentTitle from "react-document-title";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import List from "../modules/List";
-import PlayerLink from "../parts/PlayerLink";
 
 export default class HomePage extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            playerList: [],
+            playerData: [],
         };
     }
 
-
     componentDidMount() {
-        axios.get('/api/v1/players', {
+        const { match: { params } } = this.props;
+
+        axios.get(`/api/v1/player/${params.alias}`, {
         })
             .then((response) => {
                 this.setState({
-                    playerList: response.data || [],
+                    playerData: response.data || [],
                 });
             })
             .catch(function (error) {
@@ -32,10 +31,10 @@ export default class HomePage extends React.Component {
         return (
             <div>
                 <DocumentTitle title='Elo Rankings'>
-                    <h1>Players Page</h1>
+                    <h1>{this.state.playerData.Alias}'s Player Page</h1>
                 </DocumentTitle>
                 <Link to='/'>Home</Link>
-                <List items={this.state.playerList} component={PlayerLink}/>
+                <div></div>
             </div>
         );
     }
