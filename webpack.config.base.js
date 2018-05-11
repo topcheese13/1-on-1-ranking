@@ -8,7 +8,9 @@ const destPath = path.resolve(__dirname, './public');
 module.exports = {
     cache: true,
     entry: {
-        main: [`${workingPath}/js/main.js`],
+        main: [
+            `${workingPath}/js/main.jsx`
+        ],
     },
     output: {
         path: `${destPath}/js`,
@@ -17,10 +19,14 @@ module.exports = {
     module: {
         rules: [{
             test: /\.(js|jsx)$/,
+            include: [`${workingPath}`],
             exclude: [/node_modules/, /public/],
             use: {
                 loader: "babel-loader"
             }
         }],
     },
+    resolve: {
+        extensions: [".js", ".jsx"]
+    }
 };

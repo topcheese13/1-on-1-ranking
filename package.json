@@ -3,10 +3,11 @@
     "version": "1.0.0",
     "main": "./front-end/js/main.js",
     "scripts": {
-        "prod": "NODE_ENV=dev webpack --config webpack.config.prod.js --watch",
+        "build": "NODE_ENV=dev webpack --config webpack.config.prod.js",
+        "buildwatch": "NODE_ENV=dev webpack --config webpack.config.prod.js --watch",
         "hot": "NODE_ENV=dev node ./dev-server.js",
         "styles": "gulp --require babel-register",
-        "all": "concurrently \"yarn prod\" \"yarn styles\" \"yarn hot\""
+        "all": "concurrently \"yarn buildwatch\" \"yarn styles\" \"yarn hot\""
     },
     "repository": {
         "type": "git",
@@ -46,6 +47,7 @@
         "gulp": "^3.9.1",
         "npm": "^6.0.1",
         "react": "^16.3.0",
+        "react-document-title": "^2.0.3",
         "react-dom": "^16.3.0",
         "react-router": "^4.2.0",
         "react-router-dom": "^4.2.2"
