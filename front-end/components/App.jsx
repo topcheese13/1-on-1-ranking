@@ -1,12 +1,19 @@
-import React, { Component } from "react";
-import { hot } from 'react-hot-loader'
+import React from "react";
+import { hot } from 'react-hot-loader';
+import { BrowserRouter, Route, Switch} from "react-router-dom";
+import HomePage from "pages/HomePage";
+import PlayersPage from "pages/PlayersPage";
 
-class App extends Component {
+class App extends React.Component {
     render() {
         return (
-            <div className="pageTitle">
-                <p>React here!abc</p>
-            </div>
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path='/' component={HomePage}/>
+                    <Route exact path='/players' component={PlayersPage}/>
+                    {/*<Route path='/players/:id' component={PlayersPage}/>*/}
+                </Switch>
+            </BrowserRouter>
         );
     }
 };
