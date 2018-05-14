@@ -5,6 +5,8 @@
 Rankings (view all link?) | Latest Games (view all link?)
 Input Game
 
+ - confirmation
+
 ## Games
 
 List of games

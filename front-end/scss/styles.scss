@@ -1,7 +1,16 @@
-.pageTitle {
-  font-size: 35px;
-  color: pink;
-  background: blue;
-  border-radius: 2px;
-  user-select: none;
-}
+
+
+// Vendors
+// scss-lint:disable all
+@import "../../node_modules/normalize.css/normalize";
+// scss-line:enable all
+
+@import "base/varaibles";
+@import "base/mixins";
+@import "partials/layout";
+@import "partials/confirmation";
+@import "partials/inputGame";
+@import "partials/list";
+@import "partials/modals";
+@import "partials/profile";
+

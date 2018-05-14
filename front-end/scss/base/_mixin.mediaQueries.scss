@@ -1,0 +1,7 @@
+@mixin mediaQuery-noBleed {
+  @media (max-width: $siteWidth) {
+    @content;
+  }
+}
+
+

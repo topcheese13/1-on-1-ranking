@@ -1,0 +1,20 @@
+.app {
+  width: 100%;
+  max-width: $siteWidth;
+  margin: auto;
+}
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.column {
+
+
+  &.isHalf {
+    width: 50%;
+  }
+}

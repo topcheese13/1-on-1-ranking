@@ -21,6 +21,10 @@ Route::get('players', function () {
     return view('index');
 });
 
+Route::get('styleguide', function () {
+    return view('index');
+});
+
 Route::get('api/players', 'PlayerController@all');
 
 
