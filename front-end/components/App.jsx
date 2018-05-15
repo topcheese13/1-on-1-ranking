@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import PlayersPage from "./pages/PlayersPage";
 import PlayerPage from "./pages/PlayerPage";
 import NotFound from "./pages/Notfound";
+import StyleGuidePage from "./pages/StyleGuidePage";
 
 class App extends React.Component {
 
@@ -15,6 +16,7 @@ class App extends React.Component {
                     <Route exact path='/' component={HomePage} update={this.refreshData}/>
                     <Route exact path='/players' component={PlayersPage}/>
                     <Route path='/player/:alias' component={PlayerPage}/>
+                    <Route path='/styleguide' component={StyleGuidePage}/>
                     <Route path="*" component={NotFound}/>
                 </Switch>
             </BrowserRouter>
