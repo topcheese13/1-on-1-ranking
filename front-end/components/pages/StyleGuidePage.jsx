@@ -80,29 +80,33 @@ export default class HomePage extends React.Component {
 
                 <div class="inputGame widget">
                     <h2 className="widgetTitle">Add New Game</h2>
-                    <div className="columns">
-                        <div className="column">
-                            <h3 className="inputGame-playerType inputGame-winner">
-                                Winner
-                            </h3>
-                            <select class="inputGame-players">
-                                <option className="inputGame-player">Player 1</option>
-                                <option>Player 2</option>
-                            </select>
+                    <form>
+                        <div className="columns">
+                            <div className="column">
+                                <h3 className="inputGame-playerType inputGame-winner">
+                                    Winner
+                                </h3>
+                                <select class="inputGame-players">
+                                    <option className="inputGame-player">Player 1</option>
+                                    <option>Player 2</option>
+                                </select>
+                            </div>
+                            <div className="column">
+                                <h3 className="inputGame-playerType inputGame-loser">
+                                    Loser
+                                </h3>
+                                <select className="inputGame-players">
+                                    <option className="inputGame-player">Player 1</option>
+                                    <option>Player 2</option>
+                                </select>
+                            </div>
+                            <div className="column">
+                                <button type="submit">
+                                    Enter Game
+                                </button>
+                            </div>
                         </div>
-                        <div className="column">
-                            <h3 className="inputGame-playerType inputGame-loser">
-                                Loser
-                            </h3>
-                            <select className="inputGame-players">
-                                <option className="inputGame-player">Player 1</option>
-                                <option>Player 2</option>
-                            </select>
-                        </div>
-                        <div className="column">
-
-                        </div>
-                    </div>
+                    </form>
                 </div>
 
                 <div className="modal gameConfirmation">

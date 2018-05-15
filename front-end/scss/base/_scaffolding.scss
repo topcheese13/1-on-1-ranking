@@ -1,0 +1,106 @@
+*,
+*::before,
+*::after
+{
+  box-sizing: border-box;
+}
+
+button {
+  appearance: none;
+  position: relative;
+  border: 0;
+  background: none;
+  cursor: pointer;
+
+  font: inherit;
+  padding: {
+    top: $button-padding_top;
+    bottom: $button-padding_bottom;
+    left: $button-padding_side;
+    right: $button-padding_side;
+  }
+}
+
+svg {
+  display: block;
+}
+
+// Disabled Inputs
+option,
+select,
+textarea,
+button,
+input
+{
+  &.isDisabled,
+  &[disabled]
+  {
+    @include disabledInput();
+  }
+}
+
+select {
+  width: 100%;
+  max-width: 100%;
+}
+
+p {
+  @include longWordEllipsis;
+  display: block;
+
+  margin: {
+    top: 0;
+    bottom: 1em;
+  }
+
+  &:last-of-type {
+    margin: {
+      bottom: 0;
+    }
+  }
+}
+
+table {
+  border-collapse: collapse;
+}
+
+img {
+  height: auto;
+}
+
+caption {
+  @include srcOnly;
+}
+
+b,
+strong
+{
+  font-weight: 600;
+}
+
+s,
+strike
+{
+  text-decoration: line-through;
+}
+
+i,
+em
+{
+  font-style: italic;
+}
+
+ul,
+ol
+{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  margin: 0;
+}
+
+
