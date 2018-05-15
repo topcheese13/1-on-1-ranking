@@ -13,19 +13,27 @@
 
 // Home page
 
-Route::get('/', function () {
-    return view('index');
+Route::group(['prefix' => 'api/v1'], function() {
+    Route::get('players', 'PlayerController@all');
+    Route::get('player/{alias}', 'PlayerController@show');
 });
 
-Route::get('players', function () {
-    return view('index');
-});
 
-Route::get('styleguide', function () {
-    return view('index');
-});
+Route::get('{reactRoutes}', function () {
+    return view('index'); // your start view
+})->where('reactRoutes', '^((?!api/v1).)*$'); // except 'api' word
 
-Route::get('api/players', 'PlayerController@all');
+
+
+
+
+
+
+
+
+
+
+
 
 
 

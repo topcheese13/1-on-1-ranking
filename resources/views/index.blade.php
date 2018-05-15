@@ -15,7 +15,7 @@
 <body>
 <div id="app"></div>
 <?php
-if (true) {
+if (env('APP_ENV', false) === 'local') {
     echo '<script type="text/javascript" src="http://localhost:3030/main.js"></script>';
 } else {
     echo '<script type="text/javascript" src="/js/main.js"></script>';

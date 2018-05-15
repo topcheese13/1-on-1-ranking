@@ -1,15 +1,13 @@
 import React from "react";
 import DocumentTitle from "react-document-title";
-import { Link } from "react-router-dom";
 
-export default class HomePage extends React.Component {
+export default class NotFound extends React.Component {
     render() {
         return (
             <div>
                 <DocumentTitle title='Elo Rankings'>
-                    <h1>Home Page</h1>
+                    <img src="https://assets.hongkiat.com/uploads/funny-creative-error-404/14-error-404-page.jpg" />
                 </DocumentTitle>
-                <Link to='/players'>Players</Link>
             </div>
         );
     }
