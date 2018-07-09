@@ -11,14 +11,25 @@
 |
 */
 
-// Home page
-
 Route::group(['prefix' => 'api/v1'], function() {
+    // api/v1/players
+    // fetches all players
     Route::get('players', 'PlayerController@all');
+    // api/v1/player/alias
+    // fetches player by alias
     Route::get('player/{alias}', 'PlayerController@show');
+    // api/v1/games
+    // fetches all games
+    Route::get('games', 'GameController@all');
+    // api/v1/game
+    // create a game
+    Route::post('game', 'GameController@store');
+    // api/v1/games/latest
+    // fetches games in the last 7 days
+    Route::get('games/latest', 'GameController@latest');
 });
 
-
+// All urls not beginning with api/v1
 Route::get('{reactRoutes}', function () {
     return view('index'); // your start view
 })->where('reactRoutes', '^((?!api/v1).)*$'); // except 'api' word

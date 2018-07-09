@@ -13,12 +13,11 @@ class CreateElosTable extends Migration
      */
     public function up()
     {
-        Schema::create('Elos', function (Blueprint $table) {
-            $table->increments('ID');
-            $table->integer('PlayerID');
-            $table->integer('SeasonID');
-            $table->datetime('DateTime');
-            $table->integer('Elo');
+        Schema::create('elos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('player_id');
+            $table->integer('season_id');
+            $table->integer('elo');
             $table->timestamps();
         });
     }

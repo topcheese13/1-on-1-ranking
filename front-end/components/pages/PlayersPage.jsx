@@ -5,7 +5,7 @@ import axios from "axios";
 import List from "../modules/List";
 import PlayerLink from "../parts/PlayerLink";
 
-export default class HomePage extends React.Component {
+export default class PlayersPage extends React.Component {
 
     constructor(props) {
         super(props);

@@ -13,11 +13,11 @@ class CreateSeasonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Seasons', function (Blueprint $table) {
-            $table->increments('ID');
-            $table->integer('Number');
-            $table->dateTime('StartDate');
-            $table->dateTime('EndDate')->nullable();
+        Schema::create('seasons', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('number');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date')->nullable();
             $table->timestamps();
         });
     }

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Game;
 use App\Player;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class GameController extends Controller
 {
@@ -43,16 +44,16 @@ class GameController extends Controller
             die('fail');
         }
         $input = $request->only(['player1', 'player2', 'winner']);
-        $playerOne = Player::where('Alias', $input['player1'])->firstOrFail();
-        $playerTwo = Player::where('Alias', $input['player2'])->firstOrFail();
+        $playerOne = Player::where('alias', $input['player1'])->firstOrFail();
+        $playerTwo = Player::where('alias', $input['player2'])->firstOrFail();
         $game = new Game();
-        $game->PlayerOneID = $playerOne->ID;
-        $game->PlayerTwoID = $playerTwo->ID;
-        $game->SeasonID = Season::all()->last()->ID;
+        $game->player_one_id = $playerOne->id;
+        $game->player_two_id = $playerTwo->id;
+        $game->season_id = Season::all()->last()->id;
         if($input['player1'] == $input['winner']) {
-            $game->WinnerID = $playerOne->ID;
+            $game->winner_id = $playerOne->id;
         } else {
-            $game->WinnerID = $playerTwo->ID;
+            $game->winner_id = $playerTwo->id;
         }
         $game->DateTime = date('Y-m-d H:i:s');
         $result = $game->save();
@@ -78,9 +79,30 @@ class GameController extends Controller
      */
     public function all()
     {
-        $games = Game::join('Players as p1', 'p1.ID', '=', 'games.playerOneID')
-            ->join('Players as p2', 'p2.ID', '=', 'games.playerTwoID')
-            ->select('Games.*', 'p1.Alias as PlayerOneAlias', 'p2.Alias as PlayerTwoAlias')
+        $games = DB::table('games AS g')
+            ->join('players AS p1', 'p1.ID', '=', 'g.player_one_id')
+            ->join('players AS p2', 'p2.ID', '=', 'g.player_two_id')
+            ->select('g.*', 'p1.alias as PlayerOneAlias',  'p2.Alias as PlayerTwoAlias')
+            ->get();
+        return response()->json($games);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function latest()
+    {
+
+        $date = new Carbon;
+
+        $date->subDays(7);
+
+        $games = DB::table('games AS g')
+            ->join('players AS p1', 'p1.ID', '=', 'g.player_one_id')
+            ->join('players AS p2', 'p2.ID', '=', 'g.player_two_id')
+            ->select('g.*', 'p1.alias as PlayerOneAlias',  'p2.alias as PlayerTwoAlias')
+            ->whereDate('g.created_at', '>', $date->toDateTimeString())
+            ->limit(10)
             ->get();
         return response()->json($games);
     }
@@ -119,6 +141,11 @@ class GameController extends Controller
         //
     }
 
+    /**
+     * @param $game
+     * @param $playerOne
+     * @param $playerTwo
+     */
     private function determineNewElos($game, $playerOne, $playerTwo) {
         $kFactor = 32;
 
@@ -134,10 +161,10 @@ class GameController extends Controller
         $newRatingB = $playerTwo->Elo + ( $kFactor * ( $scoreTwo - $expectedScoreB ) );
 
         $elo = new Elo();
-        $elo->DateTime = $game->DateTime;
-        $elo->PlayerID = $playerOne->ID;
-        $elo->Elo = $newRatingA;
-        $elo->SeasonID = $game->SeasonID = Season::all()->last()->ID;
+        $elo->created_at = $game->created_at;
+        $elo->player_id = $playerOne->id;
+        $elo->elo = $newRatingA;
+        $elo->season_id = $game->season_id = Season::all()->last()->id;
         $elo->save();
         $elo = new Elo();
         $elo->DateTime = $game->DateTime;
@@ -157,7 +184,7 @@ class GameController extends Controller
             SET @rownumber = 0;
         ');
         return DB::update('
-            UPDATE Players SET Rank = (@rownumber:=@rownumber+1)
+            UPDATE players SET Rank = (@rownumber:=@rownumber+1)
             ORDER BY Elo DESC;
         ');
     }
