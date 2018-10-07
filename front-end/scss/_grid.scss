@@ -1,0 +1,22 @@
+.grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+}
+
+
+.grid-cell {
+  width: calc(50% - #{$spacer/2});
+}
+
+
+@media only screen and (max-width: 500px) {
+  .grid {
+    flex-direction: column;
+  }
+
+  .grid-cell {
+    width: 100%;
+  }
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classNames";
 
 export default class List extends React.Component {
     constructor(props) {
@@ -12,8 +13,8 @@ export default class List extends React.Component {
     render() {
         const itemList = this.props.items.map((item, index) => {
             return (
-                <li>
-                    <this.props.component key={index} {...item} />
+                <li className="listItem" key={`list-${index}`}>
+                    <this.props.component className="listItem-item" index={index + 1} {...item} />
                 </li>
             );
         });
@@ -21,7 +22,7 @@ export default class List extends React.Component {
         if (this.props.items.length === 0) {
             return null;
         } else {
-            return <ul>
+            return <ul className={classNames("listItems", this.props.className)}>
                 {itemList}
             </ul>
         }

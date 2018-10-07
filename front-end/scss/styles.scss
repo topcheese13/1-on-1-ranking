@@ -1,7 +1,23 @@
-.pageTitle {
-  font-size: 35px;
-  color: pink;
-  background: blue;
-  border-radius: 2px;
-  user-select: none;
-}
+@import "../../node_modules/normalize.css/normalize";
+
+$primaryColor: #476270;
+$spacer: 36px;
+
+@import "scaffolding";
+@import "layout";
+@import "titles";
+@import "grid";
+@import "bar";
+@import "button";
+@import "select";
+@import "notFound";
+@import "newGame";
+@import "players";
+@import "profile";
+@import "games";
+@import "breadcrumbs";
+@import "lists";
+
+
+
+

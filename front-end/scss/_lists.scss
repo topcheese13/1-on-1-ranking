@@ -1,0 +1,68 @@
+.listItems {
+  text-align: center;
+  background-color: rgba(saturate($primaryColor, 30%), .5);
+  padding: $spacer/2 $spacer;
+  transform-origin: 0 50%;
+  transform: rotateX(10deg) rotateY(5deg);
+}
+
+.listItem {
+
+}
+
+.listItem-link {
+  display: block;
+  font-size: 26px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 20px 0;
+  transition: all .4s;
+  transform-origin: 0% 50%;
+
+  &:hover,
+  &:focus {
+    background-color: rgba(saturate($primaryColor, 100%), .5);
+    transform: scale(1.2) rotateY(-5deg) translateX(-40px);
+  }
+}
+
+.listItems-match {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 16px;
+}
+
+.listItem-rank {
+  margin-right: auto;
+  min-width: 50px;
+  text-align: center;
+}
+
+.listItem-loser,
+.listItem-winner {
+  min-width: 200px;
+}
+
+.listItem-winnerIcon {
+  display: inline-block;
+  width: 26px;
+  color: white;
+  margin-right: 10px;
+}
+
+.listItem-winner {
+  text-align: right;
+}
+
+.listItem-loser {
+  opacity: .9;
+  text-align: left;
+}
+
+.listItem-vs {
+  margin: 0 10px;
+  font-size: 12px;
+  opacity: .5;
+}

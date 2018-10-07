@@ -1,0 +1,19 @@
+.breadcrumbs {
+  margin: 24px 0 0;
+}
+
+.breadcrumb {
+  opacity: .4;
+  font-size: 12px;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+}
+
+.breadcrumb-separator {
+  color: white;
+  opacity: .2;
+}

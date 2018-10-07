@@ -1,0 +1,32 @@
+*,
+*::before,
+*::after
+{
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arsenal', sans-serif;
+  font-weight: 600;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  display: block;
+  position: relative;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  text-align: center;
+}
+
+a {
+  color: white;
+}
+
+ul, ol {
+  list-style: none;
+}

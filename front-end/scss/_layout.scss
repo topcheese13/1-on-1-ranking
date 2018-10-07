@@ -1,0 +1,30 @@
+#app {
+  min-height: 100vh;
+}
+
+.page {
+  min-height: 100%;
+  color: white;
+  perspective: 800px;
+  transform-origin: 50% 100%;
+}
+
+.content {
+  position: relative;
+  max-width: 800px;
+  margin: auto;
+  padding: 0;
+  //background-color: rgba(0, 0, 0, .1);
+
+  > * + * {
+    margin-top: $spacer;
+  }
+}
+
+body {
+  background-image: url("../images/fullBackground.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-attachment: fixed;
+}

@@ -1,0 +1,52 @@
+.button {
+  display: block;
+  transition: box-shadow .2s;
+  text-decoration: none;
+  text-align: center;
+  text-shadow: 0 0 2px rgba($primaryColor, 1);
+  box-shadow: 0 0 10px 3px rgba($primaryColor, .1) inset;
+  border: solid rgba(255, 255, 255, 0.2) 1px;
+  background-color: rgba($primaryColor, .5);
+  padding: 10px 0;
+  width: 100%;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 10px 100px rgba($primaryColor, .5) inset;
+    background-color: rgba(saturate($primaryColor, 50%), .5);
+  }
+
+  &.button3D {
+    font-size: 40px;
+    transition: transform .5s, box-shadow .2s;
+    transform: rotateX(20deg);
+
+    &:hover,
+    &:focus {
+      transform: translateY(-20px) rotateX(0deg) ;
+    }
+  }
+}
+
+.submit {
+  display: block;
+  width: 100%;
+  margin: $spacer / 2 auto 0;
+  padding: 6px;
+  max-width: 200px;
+  color: white;
+  background-color: $primaryColor;
+
+  &:not([disabled]) {
+    &:focus,
+    &:hover {
+      cursor: pointer;
+      background-color: saturate($primaryColor, 100%);
+    }
+  }
+
+  &[disabled] {
+    opacity: .5;
+    cursor: not-allowed;
+  }
+}

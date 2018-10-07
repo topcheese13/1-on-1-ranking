@@ -1,0 +1,20 @@
+.newGame {
+  background-color: rgba($primaryColor, .4);
+  padding: $spacer/2 $spacer;
+}
+
+
+.newGame-title {
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 1);
+}
+
+.newGame-label {
+  display: block;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 1);
+  margin-bottom: 6px;
+}
+
+.newGame-player {
+  display: block;
+}
+
