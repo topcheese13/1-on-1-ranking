@@ -16,6 +16,7 @@ export default class GamesPage extends React.Component {
                 winner: "slafleche",
                 loser: "hyena",
                 gameID: 1,
+                leader: true,
             },{
                 winner: "slafleche",
                 loser: "hyena",
