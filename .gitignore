@@ -15,7 +15,7 @@ yarn-error.log
 *.hot-update.json
 *.hot-update.js.map
 *.hot-update.js
-/public/js/main.js
-/public/js/main.js.map
+public/js/main.js
+public/js/main.js.map
 yarn.lock
 
