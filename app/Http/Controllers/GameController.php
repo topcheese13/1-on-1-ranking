@@ -40,22 +40,16 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        if (!$request->has(['player1', 'player2', 'winner'])) {
+        if (!$request->has(['winner', 'loser'])) {
             die('fail');
         }
-        $input = $request->only(['player1', 'player2', 'winner']);
-        $playerOne = Player::where('alias', $input['player1'])->firstOrFail();
-        $playerTwo = Player::where('alias', $input['player2'])->firstOrFail();
+        $input = $request->only(['winner', 'loser']);
+        $playerOne = Player::where('alias', $input['winner'])->firstOrFail();
+        $playerTwo = Player::where('alias', $input['loser'])->firstOrFail();
         $game = new Game();
-        $game->player_one_id = $playerOne->id;
-        $game->player_two_id = $playerTwo->id;
+        $game->winner_id = $playerOne->id;
+        $game->looser_id = $playerTwo->id;
         $game->season_id = Season::all()->last()->id;
-        if($input['player1'] == $input['winner']) {
-            $game->winner_id = $playerOne->id;
-        } else {
-            $game->winner_id = $playerTwo->id;
-        }
-        $game->DateTime = date('Y-m-d H:i:s');
         $result = $game->save();
         $this->determineNewElos($game, $playerOne, $playerTwo);
         $this->determineNewRanks();

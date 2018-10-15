@@ -16,11 +16,10 @@ class CreateGamesTable extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('season_id');
-            $table->integer('player_one_id');
-            $table->integer('player_one_elo');
+            $table->integer('winner_id');
+            $table->integer('looser_id');
             $table->integer('player_two_id');
             $table->integer('player_two_elo');
-            $table->integer('winner_id');
             $table->timestamps();
         });
     }
