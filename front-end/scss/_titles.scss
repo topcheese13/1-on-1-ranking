@@ -1,0 +1,39 @@
+.pageTitle {
+  font-size: 60px;
+  text-transform: uppercase;
+  transform: rotateX(40deg);
+  text-shadow: 0 10px 10px rgba(0, 0, 0, 0.9);
+  margin: 0;
+  padding: 20px 0 0 0;
+  color: white;
+
+  &.isHome {
+    font-size: 150px;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.subTitle {
+  text-transform: uppercase;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 1);
+}
+
+
+@media only screen and (max-width: 800px) {
+  .pageTitle {
+    &.isHome {
+      font-size: 90px;
+    }
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .pageTitle {
+    &.isHome {
+      font-size: 40px;
+      margin: 20px 0;
+    }
+  }
+}

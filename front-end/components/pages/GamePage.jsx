@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import List from "../modules/List";
 import GameLink from "../parts/GameLink";
-import PageTitle from "../parts/PageTitle";
 import classNames from "classNames";
+import PageTitle from "../parts/PageTitle";
 
 export default class GamesPage extends React.Component {
 
@@ -15,43 +15,33 @@ export default class GamesPage extends React.Component {
             gameList: [{
                 winner: "slafleche",
                 loser: "hyena",
-                gameID: 1,
             },{
                 winner: "slafleche",
                 loser: "hyena",
-                gameID: 1,
             },{
                 winner: "slafleche",
                 loser: "hyena",
-                gameID: 1,
             },{
                 winner: "slafleche",
                 loser: "hyena",
-                gameID: 1,
             },{
                 winner: "slafleche",
                 loser: "hyena",
-                gameID: 1,
             },{
                 winner: "slafleche",
                 loser: "hyena",
-                gameID: 1,
             },{
                 winner: "slafleche",
                 loser: "hyena",
-                gameID: 1,
             },{
                 winner: "slafleche",
                 loser: "hyena",
-                gameID: 1,
             },{
                 winner: "slafleche",
                 loser: "hyena",
-                gameID: 1,
             },{
                 winner: "slafleche",
                 loser: "hyena",
-                gameID: 1,
             }],
         };
     }
@@ -81,9 +71,7 @@ export default class GamesPage extends React.Component {
                     </div>
                 </div>
                 <PageTitle title="Games Page"/>
-                <div className="content">
-                    <List items={this.state.gameList} component={GameLink}/>
-                </div>
+                <List items={this.state.gameList} component={GameLink}/>
             </div>
         );
     }

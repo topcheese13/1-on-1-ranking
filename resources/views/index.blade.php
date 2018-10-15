@@ -11,12 +11,13 @@
     <meta name="theme-color" content="#0291db">
     <meta name="msapplication-navbutton-color" content="#0291db">
     <link href="/css/styles.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link href="https://fonts.googleapis.com/css?family=Arsenal:700|Oswald:700" rel="stylesheet">
 </head>
 <body>
 <div id="app"></div>
 <?php
 if (env('APP_ENV', false) === 'local') {
-    echo '<script type="text/javascript" src="http://localhost:3030/main.js"></script>';
+    echo '<script type="text/javascript" src="http://127.0.0.1:3030/main.js"></script>';
 } else {
     echo '<script type="text/javascript" src="/js/main.js"></script>';
 }
