@@ -49,13 +49,19 @@ class PlayerController extends Controller
     }
 
     /**
+     * $param $order ordering players by | optional
      * @return \Illuminate\Http\JsonResponse
      */
-    public function all()
+    public function all($order = false)
     {
-        $players = Player::all();
+        if($order) {
+            $players = Player::orderBy($order, 'DESC')->get();
+        } else {
+            $players = Player::all();
+        }
         return response()->json($players);
     }
+
 
     /**
      * Show the form for editing the specified resource.

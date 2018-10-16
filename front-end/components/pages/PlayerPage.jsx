@@ -9,25 +9,16 @@ export default class PlayerPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            playerData: {
-                alias: 'slafleche'
-            },
-        };
+            playerData: {alias: this.props.match.params.alias}
+        }
     }
 
     componentDidMount() {
-        // const { match: { params } } = this.props;
-        //
-        // axios.get(`/api/v1/player/${params.alias}`, {
-        // })
-        //     .then((response) => {
-        //         this.setState({
-        //             playerData: response.data || [],
-        //         });
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
+        axios.get('/api/v1/player/'+this.state.playerData.alias)
+            .then(res => {
+                const playerData = res.data;
+                this.setState({ playerData })
+            })
     }
 
     render() {
@@ -51,7 +42,20 @@ export default class PlayerPage extends React.Component {
                 <PageTitle title={title}/>
 
                 <div className="content">
-                    todo
+                    <div>
+                        ID: {this.state.playerData.id}
+                    </div>
+                    <div>
+                        Alias: {this.state.playerData.alias}
+                    </div>
+                    <div>
+                        Elo: {this.state.playerData.elo}
+                    </div><div>
+                        Rank: {this.state.playerData.rank}
+                    </div>
+                    <div>
+                        TODO: ADD Graph of current season elo evolution
+                    </div>
                 </div>
 
             </div>

@@ -40,16 +40,20 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
+
         if (!$request->has(['winner', 'loser'])) {
             die('fail');
         }
+
         $input = $request->only(['winner', 'loser']);
         $playerOne = Player::where('alias', $input['winner'])->firstOrFail();
         $playerTwo = Player::where('alias', $input['loser'])->firstOrFail();
         $game = new Game();
         $game->winner_id = $playerOne->id;
-        $game->looser_id = $playerTwo->id;
+        $game->loser_id = $playerTwo->id;
         $game->season_id = Season::all()->last()->id;
+        $game->player_one_elo = $playerOne->elo;
+        $game->player_two_elo = $playerTwo->elo;
         $result = $game->save();
         $this->determineNewElos($game, $playerOne, $playerTwo);
         $this->determineNewRanks();
@@ -92,9 +96,9 @@ class GameController extends Controller
         $date->subDays(7);
 
         $games = DB::table('games AS g')
-            ->join('players AS p1', 'p1.ID', '=', 'g.player_one_id')
-            ->join('players AS p2', 'p2.ID', '=', 'g.player_two_id')
-            ->select('g.*', 'p1.alias as PlayerOneAlias',  'p2.alias as PlayerTwoAlias')
+            ->join('players AS p1', 'p1.id', '=', 'g.winner_id')
+            ->join('players AS p2', 'p2.id', '=', 'g.loser_id')
+            ->select('g.*', 'p1.alias as winnerAlias',  'p2.alias as loserAlias')
             ->whereDate('g.created_at', '>', $date->toDateTimeString())
             ->limit(10)
             ->get();
@@ -146,13 +150,13 @@ class GameController extends Controller
         $scoreOne = 0;
         $scoreTwo = 0;
 
-        $game->WinnerID == $playerOne->ID ? $scoreOne = 1 : $scoreTwo = 1;
+        $game->winner_id == $playerOne->id ? $scoreOne = 1 : $scoreTwo = 1;
 
-        $expectedScoreA = 1 / ( 1 + ( pow( 10 , ( $playerTwo->Elo - $playerOne->Elo ) / 400 ) ) );
-        $expectedScoreB = 1 / ( 1 + ( pow( 10 , ( $playerOne->Elo - $playerTwo->Elo ) / 400 ) ) );
+        $expectedScoreA = 1 / ( 1 + ( pow( 10 , ( $playerTwo->elo - $playerOne->elo ) / 400 ) ) );
+        $expectedScoreB = 1 / ( 1 + ( pow( 10 , ( $playerOne->elo - $playerTwo->elo ) / 400 ) ) );
 
-        $newRatingA = $playerOne->Elo + ( $kFactor * ( $scoreOne - $expectedScoreA ) );
-        $newRatingB = $playerTwo->Elo + ( $kFactor * ( $scoreTwo - $expectedScoreB ) );
+        $newRatingA = $playerOne->elo + ( $kFactor * ( $scoreOne - $expectedScoreA ) );
+        $newRatingB = $playerTwo->elo + ( $kFactor * ( $scoreTwo - $expectedScoreB ) );
 
         $elo = new Elo();
         $elo->created_at = $game->created_at;
@@ -161,15 +165,15 @@ class GameController extends Controller
         $elo->season_id = $game->season_id = Season::all()->last()->id;
         $elo->save();
         $elo = new Elo();
-        $elo->DateTime = $game->DateTime;
-        $elo->PlayerID = $playerTwo->ID;
-        $elo->Elo = $newRatingB;
-        $elo->SeasonID = $game->SeasonID = Season::all()->last()->ID;
+        $elo->created_at = $game->created_at;
+        $elo->player_id = $playerTwo->id;
+        $elo->elo = $newRatingB;
+        $elo->season_id = $game->season_id = Season::all()->last()->id;
         $elo->save();
 
-        $playerOne->Elo = $newRatingA;
+        $playerOne->elo = $newRatingA;
         $playerOne->save();
-        $playerTwo->Elo = $newRatingB;
+        $playerTwo->elo = $newRatingB;
         $playerTwo->save();
     }
 

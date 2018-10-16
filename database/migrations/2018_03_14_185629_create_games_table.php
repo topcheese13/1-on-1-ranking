@@ -17,8 +17,8 @@ class CreateGamesTable extends Migration
             $table->increments('id');
             $table->integer('season_id');
             $table->integer('winner_id');
-            $table->integer('looser_id');
-            $table->integer('player_two_id');
+            $table->integer('loser_id');
+            $table->integer('player_one_elo');
             $table->integer('player_two_elo');
             $table->timestamps();
         });

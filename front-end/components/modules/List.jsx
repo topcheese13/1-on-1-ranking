@@ -7,7 +7,6 @@ export default class List extends React.Component {
         this.state = {
             items: props.items | [],
         };
-        console.log(this.props);
     }
 
     render() {

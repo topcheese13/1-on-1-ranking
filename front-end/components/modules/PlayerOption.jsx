@@ -4,7 +4,7 @@ import classNames from "classNames";
 export default class PlayerOption extends React.Component {
     render() {
         const players = this.props.children.map((player, i) => {
-            return <option key={`playerKey-${i}`} value={player.alias} disabled={player.alias === this.props.selectedPlayerID}>{player.name}</option>
+            return <option key={`playerKey-${i}`} value={player.alias} disabled={player.alias === this.props.selectedPlayerID}>{player.alias}</option>
         });
         return (
             <label className={classNames("newGame-player", this.props.className)}>

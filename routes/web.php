@@ -14,7 +14,7 @@
 Route::group(['prefix' => 'api/v1'], function() {
     // api/v1/players
     // fetches all players
-    Route::get('players', 'PlayerController@all');
+    Route::get('players/{order?}', 'PlayerController@all');
     // api/v1/player/alias
     // fetches player by alias
     Route::get('player/{alias}', 'PlayerController@show');

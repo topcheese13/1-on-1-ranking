@@ -12,62 +12,16 @@ export default class GamesPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            gameList: [{
-                winner: "slafleche",
-                loser: "hyena",
-                gameID: 1,
-            },{
-                winner: "slafleche",
-                loser: "hyena",
-                gameID: 1,
-            },{
-                winner: "slafleche",
-                loser: "hyena",
-                gameID: 1,
-            },{
-                winner: "slafleche",
-                loser: "hyena",
-                gameID: 1,
-            },{
-                winner: "slafleche",
-                loser: "hyena",
-                gameID: 1,
-            },{
-                winner: "slafleche",
-                loser: "hyena",
-                gameID: 1,
-            },{
-                winner: "slafleche",
-                loser: "hyena",
-                gameID: 1,
-            },{
-                winner: "slafleche",
-                loser: "hyena",
-                gameID: 1,
-            },{
-                winner: "slafleche",
-                loser: "hyena",
-                gameID: 1,
-            },{
-                winner: "slafleche",
-                loser: "hyena",
-                gameID: 1,
-            }],
-        };
+            gameList: []
+        }
     }
 
-
     componentDidMount() {
-        // axios.get('/api/v1/games', {
-        // })
-        //     .then((response) => {
-        //         this.setState({
-        //             gameList: response.data || [],
-        //         });
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
+        axios.get('/api/v1/games/latest')
+            .then(res => {
+                const gameList = res.data;
+                this.setState({ gameList });
+            })
     }
 
     render() {
