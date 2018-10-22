@@ -12,52 +12,18 @@ export default class GamesPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            gameList: [{
-                winner: "slafleche",
-                loser: "hyena",
-            },{
-                winner: "slafleche",
-                loser: "hyena",
-            },{
-                winner: "slafleche",
-                loser: "hyena",
-            },{
-                winner: "slafleche",
-                loser: "hyena",
-            },{
-                winner: "slafleche",
-                loser: "hyena",
-            },{
-                winner: "slafleche",
-                loser: "hyena",
-            },{
-                winner: "slafleche",
-                loser: "hyena",
-            },{
-                winner: "slafleche",
-                loser: "hyena",
-            },{
-                winner: "slafleche",
-                loser: "hyena",
-            },{
-                winner: "slafleche",
-                loser: "hyena",
-            }],
-        };
+            gameData: {id: this.props.match.params.id}
+        }
     }
 
 
     componentDidMount() {
-        // axios.get('/api/v1/games', {
-        // })
-        //     .then((response) => {
-        //         this.setState({
-        //             gameList: response.data || [],
-        //         });
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
+        axios.get('/api/v1/game/'+this.state.gameData.id)
+            .then(res => {
+                const gameData = res.data;
+                this.setState({ gameData });
+                console.log(gameData);
+            })
     }
 
     render() {
@@ -70,8 +36,7 @@ export default class GamesPage extends React.Component {
                         </span>
                     </div>
                 </div>
-                <PageTitle title="Games Page"/>
-                <List items={this.state.gameList} component={GameLink}/>
+                <PageTitle title="Game Page"/>
             </div>
         );
     }

@@ -24,6 +24,9 @@ Route::group(['prefix' => 'api/v1'], function() {
     // api/v1/game
     // create a game
     Route::post('game', 'GameController@store');
+    // api/v1/game/id
+    // fetch a game by id
+    Route::get('game/{id}', 'GameController@show');
     // api/v1/games/latest
     // fetches games in the last 7 days
     Route::get('games/latest', 'GameController@latest');
@@ -33,36 +36,3 @@ Route::group(['prefix' => 'api/v1'], function() {
 Route::get('{reactRoutes}', function () {
     return view('index'); // your start view
 })->where('reactRoutes', '^((?!api/v1).)*$'); // except 'api' word
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**
-Route::get('/', 'DefaultController@index');
-
-// Players
-
-Route::get('player/{alias}', 'PlayerController@show');
-
-// Games
-Route::get('games', 'GameController@all');
-Route::get('game/create', 'GameController@create');
-Route::post('game/create', 'GameController@store');
-
-// Seasons
-
-Route::get('season/new', 'SeasonController@store');
-**/
-
-

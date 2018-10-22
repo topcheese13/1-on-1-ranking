@@ -69,7 +69,12 @@ class GameController extends Controller
      */
     public function show($id)
     {
-        //
+        $game = Game::where('id', $id)->firstOrFail();
+        $winner = Player::where('id', $game['winner_id'])->firstOrFail();
+        $loser = Player::where('id', $game['loser_id'])->firstOrFail();
+        $game['winner'] = $winner;
+        $game['loser'] = $loser;
+        return response()->json($game);
     }
 
     /**
