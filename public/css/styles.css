@@ -430,7 +430,7 @@ body {
   .button:hover, .button:focus {
     -webkit-box-shadow: 0 0 10px 100px rgba(71, 98, 112, 0.5) inset;
     box-shadow: 0 0 10px 100px rgba(71, 98, 112, 0.5) inset;
-    background-color: rgba(25, 113, 158, 0.5); }
+    background-color: rgba(0, 121, 183, 0.5); }
   .button.button3D {
     font-size: 40px;
     -webkit-transition: -webkit-transform .5s, -webkit-box-shadow .2s;
@@ -454,7 +454,7 @@ body {
   background-color: #476270; }
   .submit:not([disabled]):focus, .submit:not([disabled]):hover {
     cursor: pointer;
-    background-color: #0079b7; }
+    background-color: #c0512a; }
   .submit[disabled] {
     opacity: .5;
     cursor: not-allowed; }
@@ -577,41 +577,82 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center; }
 
 .vs-separator {
   display: block;
-  font-size: 100px;
-  line-height: 1px;
-  text-shadow: 0 10px 10px rgba(0, 0, 0, 0.9); }
+  text-shadow: 0 10px 10px rgba(0, 0, 0, 0.9);
+  margin: 0 10px; }
+
+.vs-vs {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 50px; }
 
 .playerCard {
   background-color: rgba(71, 98, 112, 0.7);
-  padding: 16px;
   border-radius: 2px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 4px 5px;
   box-shadow: rgba(0, 0, 0, 0.5) 0 4px 5px;
-  border: solid rgba(71, 98, 112, 0.7) 2px; }
+  border: solid rgba(71, 98, 112, 0.7) 2px;
+  text-decoration: none;
+  -webkit-transition: all .2s;
+  -o-transition: all .2s;
+  transition: all .2s; }
+  .playerCard.isWinner {
+    -webkit-transform: rotateX(10deg) rotateY(10deg);
+    transform: rotateX(10deg) rotateY(10deg); }
+    .playerCard.isWinner:hover {
+      -webkit-transform: rotateX(7deg) rotateY(8deg) scale(1.05);
+      transform: rotateX(7deg) rotateY(8deg) scale(1.05); }
+      .playerCard.isWinner:hover .playerCard-avatarImage {
+        -webkit-transform: scale(1.1) rotate(5deg);
+        -ms-transform: scale(1.1) rotate(5deg);
+        transform: scale(1.1) rotate(5deg); }
+  .playerCard.isLoser {
+    -webkit-transform: rotateX(10deg) rotateY(-10deg);
+    transform: rotateX(10deg) rotateY(-10deg); }
+    .playerCard.isLoser:hover {
+      -webkit-transform: rotateX(-10deg) rotateY(0deg) scale(1.05);
+      transform: rotateX(-10deg) rotateY(0deg) scale(1.05); }
 
 .playerCard-leaderIcon {
   width: 20px; }
 
 .playerCard-avatar {
+  position: relative;
   width: 200px;
   height: 200px;
+  border-radius: 50%;
+  border: solid white 2px;
+  margin: 16px;
+  overflow: hidden;
+  -webkit-box-shadow: inset black 0 4px 10px;
+  box-shadow: inset black 0 4px 10px; }
+
+.playerCard-avatarImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
-  border-radius: 50%;
-  border: solid white 2px;
-  -webkit-box-shadow: inset black 0 4px 15px;
-  box-shadow: inset black 0 4px 15px;
-  background-color: white; }
+  -webkit-transition: -webkit-transform .5s .1s;
+  transition: -webkit-transform .5s .1s;
+  -o-transition: transform .5s .1s;
+  transition: transform .5s .1s;
+  transition: transform .5s .1s, -webkit-transform .5s .1s;
+  z-index: -1; }
 
 .playerCard-frame {
   position: relative; }
@@ -630,7 +671,7 @@ body {
   bottom: 0;
   right: 0;
   background-color: rgba(71, 98, 112, 0.98);
-  border: solid rgba(255, 255, 255, 0.5) 1px;
+  border: solid rgba(0, 0, 0, 0.35) 1px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.65) 0 4px 15px;
   box-shadow: rgba(0, 0, 0, 0.65) 0 4px 15px;
   font-weight: 400;
@@ -640,6 +681,33 @@ body {
   border-radius: 50%; }
   .playerCard-rank.isLeader {
     background-color: #c0512a; }
+
+.playerCard-resultIcon {
+  width: 30px;
+  height: auto;
+  margin-right: 6px; }
+
+.playerCard-result {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.35);
+  padding: 6px;
+  text-align: center; }
+
+.playerCard-alias {
+  padding: 6px;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 30px; }
 
 .gameCard {
   display: -webkit-box;
@@ -655,55 +723,13 @@ body {
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
-  margin-top: 100px; }
+  margin-top: 36px; }
 
-.playerCard {
-  background-color: rgba(71, 98, 112, 0.7);
+.match {
+  background-color: rgba(71, 98, 112, 0.9);
   padding: 16px;
   border-radius: 2px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 4px 5px;
   box-shadow: rgba(0, 0, 0, 0.5) 0 4px 5px;
-  border: solid rgba(71, 98, 112, 0.7) 2px; }
-
-.playerCard-leaderIcon {
-  width: 20px; }
-
-.playerCard-avatar {
-  width: 200px;
-  height: 200px;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 50%;
-  border: solid white 2px;
-  -webkit-box-shadow: inset black 0 4px 15px;
-  box-shadow: inset black 0 4px 15px;
-  background-color: white; }
-
-.playerCard-frame {
-  position: relative; }
-
-.playerCard-rank {
-  position: absolute;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(71, 98, 112, 0.98);
-  border: solid rgba(255, 255, 255, 0.5) 1px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.65) 0 4px 15px;
-  box-shadow: rgba(0, 0, 0, 0.65) 0 4px 15px;
-  font-weight: 400;
-  font-size: 20px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%; }
-  .playerCard-rank.isLeader {
-    background-color: #c0512a; }
+  border: solid rgba(71, 98, 112, 0.7) 1px;
+  margin-top: 36px; }

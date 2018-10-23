@@ -7,7 +7,11 @@ export default class GameCard extends React.PureComponent {
             <div className="gameCard">
                 <div className="vs">
                     <PlayerCard {...this.props.winner} winner={true}/>
-                    <div className="vs-separator">VS</div>
+                    <div className="vs-separator">
+                        <div className="vs-vs">
+                            VS
+                        </div>
+                    </div>
                     <PlayerCard {...this.props.loser} winner={false}/>
                 </div>
                 <ul className="match">
@@ -21,7 +25,7 @@ export default class GameCard extends React.PureComponent {
                     </li>
                     <li className="match-statInfo">
                         <span className="match-stat">
-                            Match entered on:
+                            Time:
                         </span>
                         <span className="match-statValue">
                             {this.props.created_at}

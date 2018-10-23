@@ -13,7 +13,7 @@
   &:hover,
   &:focus {
     box-shadow: 0 0 10px 100px rgba($primaryColor, .5) inset;
-    background-color: rgba(saturate($primaryColor, 50%), .5);
+    background-color: rgba(saturate($primaryColor, 100%), .5);
   }
 
   &.button3D {
@@ -41,7 +41,7 @@
     &:focus,
     &:hover {
       cursor: pointer;
-      background-color: saturate($primaryColor, 100%);
+      background-color: $highlightColor;
     }
   }
 

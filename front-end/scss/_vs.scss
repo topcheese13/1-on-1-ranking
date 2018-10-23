@@ -1,12 +1,18 @@
 .vs {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
 }
 
 .vs-separator {
   display: block;
-  font-size: 100px;
-  line-height: 1px;
-  text-shadow: 0 10px 10px rgba(0, 0, 0, 0.9)
+  text-shadow: 0 10px 10px rgba(0, 0, 0, 0.9);
+  margin: 0 10px;
+}
+
+.vs-vs {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 50px;
 }
