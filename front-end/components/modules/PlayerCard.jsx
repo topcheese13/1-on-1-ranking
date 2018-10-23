@@ -5,15 +5,17 @@ import WinnerIcon from "./WinnerIcon";
 
 export default class PlayerCard extends React.PureComponent {
     render() {
+        const avatar = this.props.avatar ? this.props.avatar : `/images/${(this.props.alias + ".png" || "").toLowerCase().replace(" ", "")}`;
         const isLeader = this.props.rank === 1;
         const isWinner = this.props.winner;
+        const image = <div className="playerCard-avatarImage" style={{backgroundImage: `url("${avatar}")`}}/>;
+        const wrappedImage = isWinner ? image : <div className="playerCard-avatarFlip">{image}</div>;
 
-        const avatar = this.props.avatar ? this.props.avatar : `/images/${(this.props.alias + ".png" || "").toLowerCase().replace(" ", "")}`;
         return (
             <a href={`/player/${this.props.id}`} className={classNames("playerCard", {isWinner, isLoser: !isWinner})}>
                 <div className="playerCard-frame">
                     <div className="playerCard-avatar">
-                        <div className="playerCard-avatarImage" style={{backgroundImage: `url("${avatar}")`}}/>
+                        {wrappedImage}
                     </div>
                     <div className={classNames("playerCard-rank", {isLeader})}>
                         {this.props.rank === 1 && <LeaderIcon className="playerCard-leaderIcon"/>}
