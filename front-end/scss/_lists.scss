@@ -3,7 +3,7 @@
   background-color: rgba(saturate($primaryColor, 30%), .5);
   padding: $spacer/2 $spacer;
   transform-origin: 0 50%;
-  transform: rotateX(10deg) rotateY(5deg);
+  transform: rotateX(2deg) rotateY(5deg);
 }
 
 .listItem {
@@ -23,7 +23,7 @@
   &:hover,
   &:focus {
     background-color: rgba(saturate($primaryColor, 100%), .5);
-    transform: scale(1.2) rotateY(-5deg) translateX(-40px);
+    transform: scale(1.15) rotateY(-5deg) translateX(-40px);
   }
 }
 

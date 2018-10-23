@@ -1,7 +1,8 @@
 @import "../../node_modules/normalize.css/normalize";
 
-$primaryColor: #476270;
-$spacer: 36px;
+$primaryColor     : #476270;
+$highlightColor   : #c0512a;
+$spacer           : 36px;
 
 @import "scaffolding";
 @import "layout";
@@ -17,7 +18,7 @@ $spacer: 36px;
 @import "games";
 @import "breadcrumbs";
 @import "lists";
-
-
-
-
+@import "vs";
+@import "playerCard";
+@import "gameCard";
+@import "match";

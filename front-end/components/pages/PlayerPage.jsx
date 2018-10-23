@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import PageTitle from "../parts/PageTitle";
-import classNames from "classNames";
 
 export default class PlayerPage extends React.Component {
 

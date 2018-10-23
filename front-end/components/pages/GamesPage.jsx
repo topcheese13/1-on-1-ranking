@@ -5,7 +5,6 @@ import axios from "axios";
 import List from "../modules/List";
 import GameLink from "../parts/GameLink";
 import PageTitle from "../parts/PageTitle";
-import classNames from "classNames";
 
 export default class GamesPage extends React.Component {
 

@@ -1,0 +1,50 @@
+.playerCard {
+  background-color: rgba($primaryColor, .7);
+  padding: 16px;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 4px 5px;
+  border: solid rgba($primaryColor, .7) 2px;
+}
+
+.playerCard-leaderIcon {
+  width: 20px;
+}
+
+
+.playerCard-avatar {
+  width: 200px;
+  height: 200px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  border: solid white 2px;
+  box-shadow: inset black 0 4px 15px;
+  background-color: white;
+}
+
+.playerCard-frame {
+  position: relative;
+}
+
+.playerCard-rank {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  right: 0;
+  background-color: rgba($primaryColor, .98);
+  border: solid rgba(255, 255, 255, 0.5) 1px;
+  box-shadow: rgba(0, 0, 0, 0.65) 0 4px 15px;
+  font-weight: 400;
+  font-size: 20px;
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+
+  &.isLeader {
+    background-color: $highlightColor;
+  }
+}

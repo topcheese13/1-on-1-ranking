@@ -1,6 +1,6 @@
 import React from "react";
 import DocumentTitle from "react-document-title";
-import classNames from "classNames";
+import classNames from "classnames";
 
 export default class GameLink extends React.Component {
     render() {
