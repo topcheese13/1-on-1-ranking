@@ -1,6 +1,12 @@
 $playerCard-padding: 16px;
+$playerCard-imageWidth: 200px;
+
+.content > .playerCard {
+  margin-top: 36px;
+}
 
 .playerCard {
+  position: relative;
   background-color: rgba($primaryColor, .7);
   border-radius: 2px;
   box-shadow: rgba(0, 0, 0, 0.5) 0 4px 5px;
@@ -8,6 +14,8 @@ $playerCard-padding: 16px;
   text-decoration: none;
   transition: all .2s;
   user-select: none;
+  width: #{$playerCard-imageWidth + 2 * $playerCard-padding};
+  margin: auto;
 
   &.isWinner {
     transform: rotateX(10deg) rotateY(10deg);
@@ -23,6 +31,10 @@ $playerCard-padding: 16px;
     &:hover {
       transform: rotateX(7deg) rotateY(-8deg) scale(1.05);
     }
+
+    .playerCard-avatarFlip {
+      transform: scaleX(-1);
+    }
   }
 
   &:hover {
@@ -36,11 +48,20 @@ $playerCard-padding: 16px;
   width: 20px;
 }
 
+.playerCard-avatarFlip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
 
 .playerCard-avatar {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: $playerCard-imageWidth;
+  height: $playerCard-imageWidth;
   border-radius: 50%;
   border: solid white 2px;
   margin: $playerCard-padding;
@@ -63,17 +84,10 @@ $playerCard-padding: 16px;
 
 .playerCard-frame {
   position: relative;
+  z-index: 1;
 }
 
-.playerCard-avatarFlip {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: scaleX(-1);
-  z-index: -1;
-}
+
 
 .playerCard-rank {
   position: absolute;

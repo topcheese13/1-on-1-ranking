@@ -5,15 +5,16 @@ import WinnerIcon from "./WinnerIcon";
 
 export default class PlayerCard extends React.PureComponent {
     render() {
-        const avatar = this.props.avatar ? this.props.avatar : `/images/${(this.props.alias + ".png" || "").toLowerCase().replace(" ", "")}`;
+        const userNameURI = (this.props.alias || "").toLowerCase().replace(" ", "_");
+        const avatar = this.props.avatar ? this.props.avatar : `/images/${(this.props.alias + ".png" || "").toLowerCase().replace(" ", "_")}`;
         const isLeader = this.props.rank === 1;
         const isWinner = this.props.winner;
         const isLoser = this.props.loser;
         const image = <div className="playerCard-avatarImage" style={{backgroundImage: `url("${avatar}")`}}/>;
         const wrappedImage = isWinner ? image : <div className="playerCard-avatarFlip">{image}</div>;
 
-        return (
-            <a href={`/player/${this.props.id}`} className={classNames("playerCard", {isWinner, isLoser: !isWinner})}>
+        const card = (
+            <React.Fragment>
                 <div className="playerCard-frame">
                     <div className="playerCard-avatar">
                         {wrappedImage}
@@ -41,7 +42,21 @@ export default class PlayerCard extends React.PureComponent {
                         <span className="playerCard-resultText">Loser</span>
                     </div>
                 }
-            </a>
+            </React.Fragment>
         );
+
+        if (this.props.asLink) {
+            return (
+                <a href={`/player/${userNameURI}`} className={classNames("playerCard", {isWinner, isLoser})}>
+                    {card}
+                </a>
+            );
+        } else {
+            return (
+                <div className="playerCard">
+                    {card}
+                </div>
+            );
+        }
     }
 };

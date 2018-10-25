@@ -9,13 +9,13 @@ export default class GameCard extends React.PureComponent {
         return (
             <div className="gameCard">
                 <div className="vs">
-                    <PlayerCard {...this.props.winner} winner={true}/>
+                    <PlayerCard {...this.props.winner} winner={true} asLink={true}/>
                     <div className="vs-separator">
                         <div className="vs-vs">
                             VS
                         </div>
                     </div>
-                    <PlayerCard {...this.props.loser} loser={true}/>
+                    <PlayerCard {...this.props.loser} loser={true} asLink={true}/>
                 </div>
                 <ul className="match">
                     <li className="match-statInfo">
