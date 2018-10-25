@@ -633,7 +633,7 @@ body {
 .vs-separator {
   display: block;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
-  margin: 0 36fpx; }
+  margin: 0 36px; }
 
 .vs-vs {
   position: relative;
