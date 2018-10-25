@@ -8,6 +8,7 @@ export default class PlayerCard extends React.PureComponent {
         const avatar = this.props.avatar ? this.props.avatar : `/images/${(this.props.alias + ".png" || "").toLowerCase().replace(" ", "")}`;
         const isLeader = this.props.rank === 1;
         const isWinner = this.props.winner;
+        const isLoser = this.props.loser;
         const image = <div className="playerCard-avatarImage" style={{backgroundImage: `url("${avatar}")`}}/>;
         const wrappedImage = isWinner ? image : <div className="playerCard-avatarFlip">{image}</div>;
 
@@ -27,17 +28,19 @@ export default class PlayerCard extends React.PureComponent {
                     {this.props.alias}
                 </div>
                 <div className="playerCard-elo">
+                    <strong>Score:&nbsp;</strong>
                     {this.props.elo}
                 </div>
-                {isWinner ? (
+                {isWinner &&
                     <div className="playerCard-winner playerCard-result">
                         <span className="playerCard-resultText">Winner!</span>
                     </div>
-                ) : (
+                }
+                {isLoser &&
                     <div className="playerCard-loser playerCard-result">
                         <span className="playerCard-resultText">Loser</span>
                     </div>
-                )}
+                }
             </a>
         );
     }

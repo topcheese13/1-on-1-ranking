@@ -6,7 +6,7 @@
 
 .vs-separator {
   display: block;
-  text-shadow: 0 10px 10px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
   margin: 0 16px;
 }
 
@@ -15,4 +15,5 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 50px;
+  font-weight: 700;
 }

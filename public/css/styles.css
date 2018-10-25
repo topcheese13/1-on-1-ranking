@@ -308,8 +308,8 @@ template {
   box-sizing: border-box; }
 
 body {
-  font-family: 'Arsenal', sans-serif;
-  font-weight: 600; }
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300; }
 
 h1,
 h2,
@@ -319,8 +319,9 @@ h5,
 h6 {
   display: block;
   position: relative;
-  font-family: 'Oswald', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   text-align: center; }
 
 a {
@@ -328,6 +329,9 @@ a {
 
 ul, ol {
   list-style: none; }
+
+b, strong {
+  font-weight: 700; }
 
 #app {
   min-height: 100vh; }
@@ -586,7 +590,7 @@ body {
 
 .vs-separator {
   display: block;
-  text-shadow: 0 10px 10px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
   margin: 0 16px; }
 
 .vs-vs {
@@ -595,18 +599,23 @@ body {
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  font-size: 50px; }
+  font-size: 50px;
+  font-weight: 700; }
 
 .playerCard {
   background-color: rgba(71, 98, 112, 0.7);
   border-radius: 2px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 4px 5px;
   box-shadow: rgba(0, 0, 0, 0.5) 0 4px 5px;
-  border: solid rgba(71, 98, 112, 0.7) 2px;
+  border: solid rgba(0, 0, 0, 0.35) 2px;
   text-decoration: none;
   -webkit-transition: all .2s;
   -o-transition: all .2s;
-  transition: all .2s; }
+  transition: all .2s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
   .playerCard.isWinner {
     -webkit-transform: rotateX(10deg) rotateY(10deg);
     transform: rotateX(10deg) rotateY(10deg); }
@@ -680,7 +689,8 @@ body {
   -ms-flex-pack: center;
   justify-content: center;
   bottom: 0;
-  right: 0;
+  margin-top: -5px;
+  right: 21px;
   background-color: rgba(71, 98, 112, 0.98);
   border: solid rgba(0, 0, 0, 0.35) 1px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.65) 0 4px 15px;
@@ -711,14 +721,22 @@ body {
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.35);
   padding: 6px;
-  text-align: center; }
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 2px; }
 
 .playerCard-alias {
-  padding: 6px;
-  font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
   text-align: center;
-  font-size: 30px; }
+  font-size: 26px; }
+
+.playerCard-elo {
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding-bottom: 6px;
+  margin: 16px; }
 
 .gameCard {
   display: -webkit-box;
@@ -737,10 +755,37 @@ body {
   margin-top: 36px; }
 
 .match {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   background-color: rgba(71, 98, 112, 0.9);
   padding: 16px;
   border-radius: 2px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 4px 5px;
   box-shadow: rgba(0, 0, 0, 0.5) 0 4px 5px;
   border: solid rgba(71, 98, 112, 0.7) 1px;
-  margin-top: 36px; }
+  margin-top: 36px;
+  font-size: 16px; }
+
+.match-statInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  margin: 0 16px;
+  font-size: 16px; }
+
+.match-stat {
+  display: block;
+  margin: 0; }

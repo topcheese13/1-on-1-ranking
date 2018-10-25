@@ -1,5 +1,8 @@
 import React from "react";
 import PlayerCard from "./PlayerCard";
+import moment from "moment";
+
+
 
 export default class GameCard extends React.PureComponent {
     render() {
@@ -12,23 +15,24 @@ export default class GameCard extends React.PureComponent {
                             VS
                         </div>
                     </div>
-                    <PlayerCard {...this.props.loser} winner={false}/>
+                    <PlayerCard {...this.props.loser} loser={true}/>
                 </div>
                 <ul className="match">
                     <li className="match-statInfo">
-                        <span className="match-stat">
+                        <h3 className="match-stat">
                             Season:
-                        </span>
+                        </h3>
+                        &nbsp;
                         <span className="match-statValue">
                             {this.props.season_id}
                         </span>
                     </li>
                     <li className="match-statInfo">
-                        <span className="match-stat">
-                            Time:
-                        </span>
+                        <h3 className="match-stat">
+                            Time: &nbsp;
+                        </h3>
                         <span className="match-statValue">
-                            {this.props.created_at}
+                            {moment(this.props.created_at).format('MMMM Do YYYY, h:mm a')}
                         </span>
                     </li>
                 </ul>
