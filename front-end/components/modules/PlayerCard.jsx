@@ -2,6 +2,7 @@ import React from "react";
 import LeaderIcon from "./LeaderIcon";
 import classNames from "classnames";
 import WinnerIcon from "./WinnerIcon";
+import {Link} from "react-router-dom";
 
 export default class PlayerCard extends React.PureComponent {
     render() {
@@ -47,9 +48,9 @@ export default class PlayerCard extends React.PureComponent {
 
         if (this.props.asLink) {
             return (
-                <a href={`/player/${userNameURI}`} className={classNames("playerCard", {isWinner, isLoser})}>
+                <Link to={`/player/${userNameURI}`} className={classNames("playerCard", {isWinner, isLoser})}>
                     {card}
-                </a>
+                </Link>
             );
         } else {
             return (
