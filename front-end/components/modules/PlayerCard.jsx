@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 export default class PlayerCard extends React.PureComponent {
     render() {
         const userNameURI = (this.props.alias || "").toLowerCase().replace(" ", "_");
-        const avatar = this.props.avatar || '/images/generic_player_avatar.png';
+        const avatar = this.props.avatar || '/images/pigeon.png';
         const isLeader = this.props.rank === 1;
         const isWinner = this.props.winner;
         const isLoser = this.props.loser;
