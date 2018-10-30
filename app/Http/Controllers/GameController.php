@@ -98,13 +98,11 @@ class GameController extends Controller
 
         $date = new Carbon;
 
-        $date->subDays(7);
 
         $games = DB::table('games AS g')
             ->join('players AS p1', 'p1.id', '=', 'g.winner_id')
             ->join('players AS p2', 'p2.id', '=', 'g.loser_id')
             ->select('g.*', 'p1.alias as winnerAlias',  'p2.alias as loserAlias')
-            ->whereDate('g.created_at', '>', $date->toDateTimeString())
             ->limit(10)
             ->get();
         return response()->json($games);
