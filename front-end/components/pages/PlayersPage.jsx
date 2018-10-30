@@ -25,6 +25,7 @@ export default class PlayersPage extends React.Component {
 
     render() {
         return (
+
             <div className="page">
                 <div className="content">
                     <div className="breadcrumbs">

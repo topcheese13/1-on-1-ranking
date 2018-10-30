@@ -1,0 +1,147 @@
+$playerCard-padding: 16px;
+$playerCard-imageWidth: 200px;
+
+.content > .playerCard {
+  margin-top: 36px;
+}
+
+.playerCard {
+  position: relative;
+  background-color: rgba($primaryColor, .7);
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 4px 5px;
+  border: solid rgba(0, 0, 0, 0.35) 2px;
+  text-decoration: none;
+  transition: all .2s;
+  user-select: none;
+  width: #{$playerCard-imageWidth + 2 * $playerCard-padding};
+  margin: auto;
+
+  &.isWinner {
+    transform: rotateX(10deg) rotateY(10deg);
+
+    &:hover {
+      transform: rotateX(7deg) rotateY(8deg) scale(1.05);
+    }
+  }
+
+  &.isLoser {
+    transform: rotateX(10deg) rotateY(-10deg);
+
+    &:hover {
+      transform: rotateX(7deg) rotateY(-8deg) scale(1.05);
+    }
+
+    .playerCard-avatarFlip {
+      transform: scaleX(-1);
+    }
+  }
+
+  &:hover {
+      .playerCard-avatarImage {
+        transform: scale(1.1) rotate(5deg);
+      }
+  }
+}
+
+.playerCard-leaderIcon {
+  width: 20px;
+}
+
+.playerCard-avatarFlip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+
+.playerCard-avatar {
+  position: relative;
+  width: $playerCard-imageWidth;
+  height: $playerCard-imageWidth;
+  border-radius: 50%;
+  border: solid white 2px;
+  margin: $playerCard-padding;
+  overflow: hidden;
+  box-shadow: inset black 0 4px 10px;
+}
+
+.playerCard-avatarImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: transform .3s .05s;
+  z-index: -1;
+}
+
+.playerCard-frame {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+.playerCard-rank {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  margin-top: -5px;
+  right: 21px;
+  background-color: rgba($primaryColor, .98);
+  border: solid rgba(0, 0, 0, 0.35) 1px;
+  box-shadow: rgba(0, 0, 0, 0.65) 0 4px 15px;
+  font-weight: 400;
+  font-size: 20px;
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+
+  &.isLeader {
+    background-color: $highlightColor;
+  }
+}
+
+
+.playerCard-resultIcon {
+  width: 30px;
+  height: auto;
+  margin-right: 6px;
+}
+
+.playerCard-result {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.35);
+  padding: 6px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.playerCard-alias {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 26px;
+}
+
+.playerCard-elo {
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding-bottom: 6px;
+  margin: $playerCard-padding;
+}

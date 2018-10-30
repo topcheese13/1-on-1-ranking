@@ -1,11 +1,8 @@
 import React from "react";
-import DocumentTitle from "react-document-title";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import List from "../modules/List";
-import GameLink from "../parts/GameLink";
-import classNames from "classNames";
 import PageTitle from "../parts/PageTitle";
+import GameCard from "../modules/GameCard";
 
 export default class GamesPage extends React.Component {
 
@@ -15,7 +12,6 @@ export default class GamesPage extends React.Component {
             gameData: {id: this.props.match.params.id}
         }
     }
-
 
     componentDidMount() {
         axios.get('/api/v1/game/'+this.state.gameData.id)
@@ -27,17 +23,22 @@ export default class GamesPage extends React.Component {
     }
 
     render() {
-        return (
-            <div className="page">
-                <div className="content">
-                    <div className="breadcrumbs">
-                        <span className="breadcrumb">
-                            <Link to='/' className="breadcrumb">Home</Link>
-                        </span>
+        if (this.state.gameData) {
+            return (
+                <div className="page">
+                    <div className="content">
+                        <div className="breadcrumbs">
+                            <span className="breadcrumb">
+                                <Link to='/' className="breadcrumb">Home</Link>
+                            </span>
+                        </div>
                     </div>
+                    <PageTitle title="Game Page"/>
+                    <GameCard {...this.state.gameData}/>
                 </div>
-                <PageTitle title="Game Page"/>
-            </div>
-        );
+            );
+        } else {
+            return null;
+        }
     }
 };

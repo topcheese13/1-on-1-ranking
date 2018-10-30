@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CreateGame from '../modules/CreateGame.jsx';
 import PageTitle from "../parts/PageTitle";
-import classNames from "classNames";
 
 export default class HomePage extends React.Component {
     render() {

@@ -11,7 +11,7 @@
     <meta name="theme-color" content="#0291db">
     <meta name="msapplication-navbutton-color" content="#0291db">
     <link href="/css/styles.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link href="https://fonts.googleapis.com/css?family=Arsenal:700|Oswald:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,700" rel="stylesheet">
 </head>
 <body>
 <div id="app"></div>

@@ -1,0 +1,26 @@
+.match {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba($primaryColor, .9);
+  padding: 16px;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 4px 5px;
+  border: solid rgba($primaryColor, .7) 1px;
+  margin-top: $spacer;
+  font-size: 16px;
+}
+
+.match-statInfo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 16px;
+  font-size: 16px;
+}
+
+.match-stat {
+  display: block;
+  margin: 0;
+}
+

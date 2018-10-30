@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import PageTitle from "../parts/PageTitle";
-import classNames from "classNames";
+import PlayerCard from "../modules/PlayerCard";
 
 export default class PlayerPage extends React.Component {
 
@@ -16,9 +16,10 @@ export default class PlayerPage extends React.Component {
     componentDidMount() {
         axios.get('/api/v1/player/'+this.state.playerData.alias)
             .then(res => {
-                const playerData = res.data;
-                this.setState({ playerData })
-            })
+                this.setState({
+                    playerData: res.data
+                });
+            });
     }
 
     render() {
@@ -42,20 +43,7 @@ export default class PlayerPage extends React.Component {
                 <PageTitle title={title}/>
 
                 <div className="content">
-                    <div>
-                        ID: {this.state.playerData.id}
-                    </div>
-                    <div>
-                        Alias: {this.state.playerData.alias}
-                    </div>
-                    <div>
-                        Elo: {this.state.playerData.elo}
-                    </div><div>
-                        Rank: {this.state.playerData.rank}
-                    </div>
-                    <div>
-                        TODO: ADD Graph of current season elo evolution
-                    </div>
+                    <PlayerCard {...this.state.playerData}/>
                 </div>
 
             </div>
